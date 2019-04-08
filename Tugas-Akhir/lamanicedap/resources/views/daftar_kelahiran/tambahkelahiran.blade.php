@@ -1,3 +1,17 @@
+@extends('layout.main')
+
+@section('tittle', 'LAMANICEDAP - FORM TAMBAH KELAHIRAN')
+@endsection
+
+@section('breadcrumb')
+<li>Lahir</li>
+<li class="active">Form Kelahiran</li>
+@endsection
+
+@section('content')
+@endsection
+
+
 @extends('base.base')
 
 @section('title', 'FORM TAMBAH KELAHIRAN')

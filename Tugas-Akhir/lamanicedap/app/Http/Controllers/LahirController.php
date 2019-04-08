@@ -8,7 +8,7 @@ use App\DataKelahiran;
 class LahirController extends Controller
 {
     public function index(){
-    	return view('index');
+    	return view('layout.main');
     }
     public function daftarLahir(){
     	return view('lahir.form-lahir');

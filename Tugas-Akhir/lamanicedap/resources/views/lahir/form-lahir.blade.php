@@ -1,4 +1,85 @@
-<!DOCTYPE html>
+@extends('layout.main')
+
+@section('tittle')
+LAMANICEDAP - FORM LAHIR
+@endsection
+
+@section('breadcrumb')
+<li>Lahir</li>
+<li class="active">Data Lahir</li>
+@endsection
+
+@section('content')
+    <section class="content">
+      <div class="row">
+        
+        <!-- right column -->
+        <div class="col-md-1"></div>
+        <div class="col-md-8">
+          <!-- Horizontal Form -->
+          
+          <!-- /.box -->
+          <!-- general form elements disabled -->
+          <div class="box box-warning">
+            <div class="box-header with-border">
+              <h3 class="box-title">Form Lahir</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <form method="POST" action="daftarlahir" role="form">
+                {{csrf_field()}}
+                <h5><b>No Surat Keterangan</b></h5>
+                <div class="col-xs-12 padding0">
+                <div class="form-group col-xs-9 padding0">
+                  <input type="text" name="no_rs" class="form-control" placeholder="Masukkan no surat keterangan rumah sakit" >
+                </div>
+                <div class="col-xs-3">
+                  <button type="button" class="btn btn-block btn-success btn-sm marginbot15">Cek</button>
+                </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="exampleInputFile">Kartu Keluarga</label>
+                  <input type="file" id="exampleInputFile">
+
+                  <p class="help-block">Masukkan hasil scan Kartu Keluarga, tidak boleh lebih dari 1MB</p>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputFile">KTP Bapak</label>
+                  <input type="file" id="exampleInputFile">
+
+                  <p class="help-block">Masukkan hasil scan KTP Bapak, tidak boleh lebih dari 1MB</p>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputFile">KTP Ibu</label>
+                  <input type="file" id="exampleInputFile">
+
+                  <p class="help-block">Masukkan hasil scan KTP Ibu, tidak boleh lebih dari 1MB</p>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputFile">Akta Nikah</label>
+                  <input type="file" id="exampleInputFile">
+
+                  <p class="help-block">Masukkan hasil scan Akta Nikah, tidak boleh lebih dari 1MB</p>
+                </div>
+
+                <div class="box-footer">
+                <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+              </form>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+        <!--/.col (right) -->
+      </div>
+      <!-- /.row -->
+    </section>
+@endsection
+
+
+{{-- <!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
@@ -160,72 +241,7 @@
     </section>
 
     <!-- Main content -->
-    <section class="content">
-      <div class="row">
-        
-        <!-- right column -->
-        <div class="col-md-1"></div>
-        <div class="col-md-8">
-          <!-- Horizontal Form -->
-          
-          <!-- /.box -->
-          <!-- general form elements disabled -->
-          <div class="box box-warning">
-            <div class="box-header with-border">
-              <h3 class="box-title">Form Lahir</h3>
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body">
-              <form method="POST" action="daftarlahir" role="form">
-                {{csrf_field()}}
-                <h5><b>No Surat Keterangan</b></h5>
-                <div class="col-xs-12 padding0">
-                <div class="form-group col-xs-9 padding0">
-                  <input type="text" name="no_rs" class="form-control" placeholder="Masukkan no surat keterangan rumah sakit" >
-                </div>
-                <div class="col-xs-3">
-                  <button type="button" class="btn btn-block btn-success btn-sm marginbot15">Cek</button>
-                </div>
-                </div>
-
-                <div class="form-group">
-                  <label for="exampleInputFile">Kartu Keluarga</label>
-                  <input type="file" id="exampleInputFile">
-
-                  <p class="help-block">Masukkan hasil scan Kartu Keluarga, tidak boleh lebih dari 1MB</p>
-                </div>
-                <div class="form-group">
-                  <label for="exampleInputFile">KTP Bapak</label>
-                  <input type="file" id="exampleInputFile">
-
-                  <p class="help-block">Masukkan hasil scan KTP Bapak, tidak boleh lebih dari 1MB</p>
-                </div>
-                <div class="form-group">
-                  <label for="exampleInputFile">KTP Ibu</label>
-                  <input type="file" id="exampleInputFile">
-
-                  <p class="help-block">Masukkan hasil scan KTP Ibu, tidak boleh lebih dari 1MB</p>
-                </div>
-                <div class="form-group">
-                  <label for="exampleInputFile">Akta Nikah</label>
-                  <input type="file" id="exampleInputFile">
-
-                  <p class="help-block">Masukkan hasil scan Akta Nikah, tidak boleh lebih dari 1MB</p>
-                </div>
-
-                <div class="box-footer">
-                <button type="submit" class="btn btn-primary">Submit</button>
-                </div>
-              </form>
-            </div>
-            <!-- /.box-body -->
-          </div>
-          <!-- /.box -->
-        </div>
-        <!--/.col (right) -->
-      </div>
-      <!-- /.row -->
-    </section>
+    
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
@@ -439,3 +455,4 @@
 <script type="text/javascript" src="{{ asset('dist/js/demo.js') }}"></script>
 </body>
 </html>
+ --}}
