@@ -1,3 +1,62 @@
+@extends('layout.main')
+
+@section('tittle')
+LAMANICEDAP - FORM LAHIR
+@endsection
+
+@section('breadcrumb')
+<li>Lahir</li>
+<li class="active">Informasi</li>
+@endsection
+
+@section('content')
+<div class="row">
+        
+        <!-- right column -->
+        <div class="col-md-1"></div>
+        <div class="col-md-8">
+          <!-- Horizontal Form -->
+          
+          <!-- /.box -->
+          <!-- general form elements disabled -->
+          <div class="box box-warning">
+            <div class="box-header with-border">
+              <h3 class="box-title">Bantuan</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-8">
+                    <div class="section-title st-center">
+                      <h2>Kelengkapan Dokumen untuk mengurus Pendaftaran Akta Kelahiran Online</h2>
+                      <h3 class="left">
+                      <ul>
+                        <li>Surat Keterangan Kelahiran dari dokter/bidan/penolong kelahiran</li>
+                        <li>Fotocopy KK dan KTP orang tua bayi</li>
+                        <li>Fotocopy Akta Perkawinan/Akta Nikah orang tua yang dilegalisir</li>
+                        <li>Fotocopy KTP 2 (dua) orang saksi yang mengetahui peristiwa</li>
+                        <li>Fotocopy Akta kelahiran ibu (apabila ada), bagi anak lahir di luar nikah</li>
+                        <li>Surat Pernyataan Belum Pernah Mencatatkan Perkawinan dari Ibu bagi anak yang lahir di luar nikah </li>
+                        <li>Berita Acara Kepolisian bagi anak yang tidak diketahui asal-usulnya</li>
+                      </ul>
+                      </h3>
+                    </div>
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+        <!--/.col (right) -->
+      </div>
+@endsection
+
+{{-- 
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -437,3 +496,4 @@
 <script src="../../dist/js/demo.js"></script>
 </body>
 </html>
+ --}}
