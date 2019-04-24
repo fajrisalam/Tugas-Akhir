@@ -17,7 +17,6 @@ LAMANICEDAP - FORM LAHIR
         <div class="col-md-1"></div>
         <div class="col-md-8">
           <!-- Horizontal Form -->
-          
           <!-- /.box -->
           <!-- general form elements disabled -->
           <div class="box box-warning">

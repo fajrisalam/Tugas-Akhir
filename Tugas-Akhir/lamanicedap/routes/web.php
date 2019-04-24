@@ -29,3 +29,9 @@ Route::get('monitoringlahir','LahirController@monitoringLahir');
 Route::get('bantuanlahir','LahirController@bantuanLahir');
 
 Route::get('daftarrs','LahirController@daftarRS');
+
+Route::get('/file','FileController@index');
+Route::get('/coba','FileController@coba');
+Route::get('/form','FileController@form');
+Route::post('/upload','FileController@upload')->name('upload');
+// Route::put('/update/{file}', 'FileController@update')->name('update');

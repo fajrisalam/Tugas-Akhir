@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\DataKelahiran;
+use Illuminate\Support\Facades\Crypt;
 
 class LahirController extends Controller
 {
     public function index(){
-    	return view('layout.main');
+        $data['data'] = Crypt::encryptString('Hello world.');
+    	return view('lahir.index', $data);
     }
     public function daftarLahir(){
     	return view('lahir.form-lahir');
