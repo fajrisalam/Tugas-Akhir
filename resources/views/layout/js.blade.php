@@ -36,7 +36,36 @@
     <!-- Custom Js -->
     <script src="{{asset('js/admin.js')}}"></script>
     <script src="{{asset('js/pages/index.js')}}"></script>
+    <script src="{{asset('js/pages/forms/advanced-form-elements.js')}}"></script>
 
     <!-- Demo Js -->
     <script src="{{asset('js/demo.js')}}"></script>
+
+
+
+
+
+
+
+
+    <!-- Bootstrap Colorpicker Js -->
+    <script src="{{asset('plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.js')}}"></script>
+
+    <!-- Dropzone Plugin Js -->
+    <script src="{{asset('plugins/dropzone/dropzone.js')}}"></script>
+
+    <!-- Input Mask Plugin Js -->
+    <script src="{{asset('plugins/jquery-inputmask/jquery.inputmask.bundle.js')}}"></script>
+
+    <!-- Multi Select Plugin Js -->
+    <script src="{{asset('plugins/multi-select/js/jquery.multi-select.js')}}"></script>
+
+    <!-- Jquery Spinner Plugin Js -->
+    <script src="{{asset('plugins/jquery-spinner/js/jquery.spinner.js')}}"></script>
+
+    <!-- Bootstrap Tags Input Plugin Js -->
+    <script src="{{asset('plugins/bootstrap-tagsinput/bootstrap-tagsinput.js')}}"></script>
+
+    <!-- noUISlider Plugin Js -->
+    <script src="{{asset('plugins/nouislider/nouislider.js')}}"></script>
     @yield('moreJS');

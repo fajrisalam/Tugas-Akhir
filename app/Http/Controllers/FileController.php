@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\File;
 use Illuminate\Http\Request;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
 
 class FileController extends Controller
 {
@@ -12,9 +14,15 @@ class FileController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //
+    public function index(){
+        $data['active'] = 2;
+        if(!Auth::check()) return route('login'); 
+        else return view('testing/testo', $data);
+    }
+    public function formUpload(){
+        $data['active'] = 3;
+        if(!Auth::check()) return route('login'); 
+        else return view('file/form', $data);
     }
 
     /**

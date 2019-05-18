@@ -19,4 +19,25 @@
 
     <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
     <link href="{{asset('css/themes/all-themes.css')}}" rel="stylesheet" />
+
+    <!-- Colorpicker Css -->
+    <link href="{{asset('plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.css')}}" rel="stylesheet" />
+
+    <!-- Dropzone Css -->
+    <link href="{{asset('plugins/dropzone/dropzone.css')}}" rel="stylesheet">
+
+    <!-- Multi Select Css -->
+    <link href="{{asset('plugins/multi-select/css/multi-select.css')}}" rel="stylesheet">
+
+    <!-- Bootstrap Spinner Css -->
+    <link href="{{asset('plugins/jquery-spinner/css/bootstrap-spinner.css')}}" rel="stylesheet">
+
+    <!-- Bootstrap Tagsinput Css -->
+    <link href="{{asset('plugins/bootstrap-tagsinput/bootstrap-tagsinput.css')}}" rel="stylesheet">
+
+    <!-- Bootstrap Select Css -->
+    <link href="{{asset('plugins/bootstrap-select/css/bootstrap-select.css')}}" rel="stylesheet" />
+
+    <!-- noUISlider Css -->
+    <link href="{{asset('plugins/nouislider/nouislider.min.css')}}" rel="stylesheet" />
     @yield('moreCSS');

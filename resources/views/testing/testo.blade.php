@@ -4,5 +4,5 @@
 
 @section('content-title', 'ini title dude')
 @section('content')
-hehehe
+hehehe {{$active}}
 @stop

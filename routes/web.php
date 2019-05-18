@@ -15,6 +15,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/template', function(){
-	return view('/testing/testo');
-});
+Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/files', 'FileController@index')->name('myfile');
+Route::get('/upload', 'FileController@formUpload')->name('upload');
+Auth::routes();
+
+// Route::get('/home', 'HomeController@index')->name('home');
