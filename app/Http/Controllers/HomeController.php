@@ -27,6 +27,6 @@ class HomeController extends Controller
     public function index(){
         $data['active'] = 1;
         if(!Auth::check()) return route('login'); 
-        else return view('testing/testo', $data);
+        else return view('testing.testo', $data);
     }
 }

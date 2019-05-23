@@ -4,10 +4,16 @@ namespace App\Http\Controllers;
 
 use App\File;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Contracts\Encryption\DecryptException;
 use Illuminate\Support\Facades\Storage;
+use Symfony\Component\Process\Exception\ProcessFailedException;
+use Symfony\Component\Process\Process;
+use finfo;
+
 
 class FileController extends Controller
 {
@@ -17,14 +23,20 @@ class FileController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(){
+        if(!Auth::check()) return redirect(route('login')); 
+
+        $user = Auth::user()->id;
+
+        $data['files'] = DB::table('files')->where('id_user', $user)->get();
+        $data['c'] = 1;
         $data['active'] = 2;
-        if(!Auth::check()) return route('login'); 
-        else return view('testing/testo', $data);
+        
+        return view('file.myfiles', $data);
     }
     public function formUpload(){
         $data['active'] = 3;
-        if(!Auth::check()) return route('login'); 
-        else return view('file/form', $data);
+        if(!Auth::check()) return redirect(route('login'));
+        else return view('file.form', $data);
     }
 
     public function upload(Request $request){
@@ -36,7 +48,9 @@ class FileController extends Controller
         $user = Auth::user()->id;
         
 
-        $files = $request->file('file');        
+        $files = $request->file('file');
+        $size = $request->file('file')->getSize();
+
         $id = File::all()->last()->id +1;
         $filename = $id.'.dat';
 
@@ -52,22 +66,47 @@ class FileController extends Controller
         // $path = $files->store('/');
         $fileOri = $files->getClientOriginalName();
         $ext = \File::extension($fileOri);
-        $path = 'app/'.$filename;
+        $path = '/';
 
         $title = $request->title ?? $files->getClientOriginalName();
         
-
+        $checksum = 'sha256sum.exe ../storage/app'.$path.$filename;
+        $process = new Process($checksum);
+        $process->run();
+        // executes after the command finishes
+        if (!$process->isSuccessful()) {
+            throw new ProcessFailedException($process);
+        }
+        $sha = explode(" ",$process->getOutput())[0];
+        
         $file = File::create([
-            'user_id' => $user,
+            'id_user' => $user,
             'filename' => $title,
+            'stored' => $filename,
             'format' => $ext,
+            'size' => $size,
             'path' => $path,
-            'duration' => $time
+            'duration' => $time,
+            'sha' => $sha
         ]);
         // dd($file);
         return redirect()
             ->back()
             ->withSuccess(sprintf('File %s has been uploaded.', $title));      
+    }
+
+    public function Download($id){
+        $file = File::find($id);
+        
+        $encryptedContent = Storage::get($file->stored);
+        //aes
+        $decryptedContent = decrypt($encryptedContent);
+
+        // return Storage::download($decryptedContent);
+        return response()->make($decryptedContent, 200, array(
+            'Content-Type' => (new finfo(FILEINFO_MIME))->buffer($decryptedContent),
+            'Content-Disposition' => 'attachment; filename="' . pathinfo($file->filename.'.'.$file->format, PATHINFO_BASENAME) . '"'
+        ));
     }
 
     /**
