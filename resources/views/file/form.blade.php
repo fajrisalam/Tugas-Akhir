@@ -18,11 +18,6 @@
                     <form action="{{ route('upload') }}" method="post" enctype="multipart/form-data">
                         {{ method_field('post') }}
                         {{ csrf_field() }}
-                        <div class="form-group {{ !$errors->has('title') ?: 'has-error' }}">
-                            <label>Title</label>
-                            <input type="text" name="title" class="form-control">
-                            <span class="help-block text-danger">{{ $errors->first('title') }}</span>
-                        </div>
                         <div class="form-group {{ !$errors->has('file') ?: 'has-error' }}">
                             <label>File</label>
                             <input type="file" name="file">

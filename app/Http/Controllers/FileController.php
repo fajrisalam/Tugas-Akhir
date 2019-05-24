@@ -12,6 +12,7 @@ use Illuminate\Contracts\Encryption\DecryptException;
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 use Symfony\Component\Process\Process;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use finfo;
 
 
@@ -41,7 +42,6 @@ class FileController extends Controller
 
     public function upload(Request $request){
         $this->validate($request, [
-            'title' => 'nullable|max:100',
             'file' => 'required|file|max:2048', // max 2MB
         ]);
         $key = env('APP_KEY');
@@ -65,10 +65,10 @@ class FileController extends Controller
 
         // $path = $files->store('/');
         $fileOri = $files->getClientOriginalName();
-        $ext = \File::extension($fileOri);
+        $ext = $files->getClientMimeType();
         $path = '/';
 
-        $title = $request->title ?? $files->getClientOriginalName();
+        $title = $files->getClientOriginalName();
         
         $checksum = 'sha256sum.exe ../storage/app'.$path.$filename;
         $process = new Process($checksum);
@@ -105,7 +105,7 @@ class FileController extends Controller
         // return Storage::download($decryptedContent);
         return response()->make($decryptedContent, 200, array(
             'Content-Type' => (new finfo(FILEINFO_MIME))->buffer($decryptedContent),
-            'Content-Disposition' => 'attachment; filename="' . pathinfo($file->filename.'.'.$file->format, PATHINFO_BASENAME) . '"'
+            'Content-Disposition' => 'attachment; filename="' . pathinfo($file->filename, PATHINFO_BASENAME) . '"'
         ));
     }
 

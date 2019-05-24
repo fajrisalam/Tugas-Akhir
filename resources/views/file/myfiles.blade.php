@@ -2,7 +2,7 @@
 
 @section('title', 'My Files')
 
-@section('content-title', 'My Files')
+
 @section('content')
 			<!-- Basic Examples -->
             <div class="row clearfix">
@@ -27,43 +27,48 @@
                         </div>
                         <div class="body">
                             <div class="table-responsive">
-                                <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
-                                    <thead>
-                                        <tr>
-                                            <th>No.</th>
-                                            <th>Filename</th>
-                                            <th>Format</th>
-                                            <th>Size (B)</th>
-                                            <th>Durasi (ms)</th>
-                                            <th>Tanggal</th>
-                                            <th>Download</th>
-                                        </tr>
-                                    </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th>No.</th>
-                                            <th>Filename</th>
-                                            <th>Format</th>
-                                            <th>Size (B)</th>
-                                            <th>Durasi (ms)</th>
-                                            <th>Tanggal</th>
-                                            <th>Download</th>
-                                        </tr>
-                                    </tfoot>
-                                    <tbody>
-                                    @foreach($files as $file)
-                                    	<tr>
-                                    		<td>{{$c++}}</td>
-                                    		<td>{{$file->filename}}</td>
-                                    		<td>{{$file->format}}</td>
-                                    		<td>{{$file->size}}</td>
-                                    		<td>{{$file->duration}}</td>
-                                    		<td>{{$file->created_at}}</td>
-                                    		<td><a href="{{URL::to('/files/'.$file->id)}}">Download</a> </td>
-                                    	</tr>
-                                    @endforeach
-                                    </tbody>
-                                </table>
+                                <div class="col-md-12">
+                                    <table class="table table-bordered table-striped table-hover js-basic-example dataTable" id="asu">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center">No.</th>
+                                                <th class="text-center">Filename</th>
+                                                <th class="text-center">Format</th>
+                                                <th class="text-center">Size</th>
+                                                <th class="text-center">Durasi (ms)</th>
+                                                <th class="text-center">Tanggal</th>
+                                                <th class="text-center">Aksi</th>
+                                            </tr>
+                                        </thead>
+                                        <tfoot>
+                                            <tr>
+                                                <th class="text-center">No.</th>
+                                                <th class="text-center">Filename</th>
+                                                <th class="text-center">Format</th>
+                                                <th class="text-center">Size</th>
+                                                <th class="text-center">Durasi (ms)</th>
+                                                <th class="text-center">Tanggal</th>
+                                                <th class="text-center">Aksi</th>
+                                            </tr>
+                                        </tfoot>
+                                        <tbody>
+                                        @foreach($files as $file)
+                                        	<tr>
+                                        		<td class="text-center">{{$c++}}</td>
+                                        		<td>{{$file->filename}}</td>
+                                        		<td>{{$file->format}}</td>
+                                        		<td style="text-align:right;">{{$file->size}} B</td>
+                                        		<td>{{$file->duration}}</td>
+                                        		<td style="text-align:right;">{{$file->created_at}}</td>
+                                        		<td class="text-center" ">
+                                                    <a href="{{URL::to('/files/'.$file->id)}}" class="btn btn-success waves-effect">Download</a> 
+                                                    <a href="#" class="btn btn-primary waves-effect">Bagikan</a> 
+                                                </td>
+                                        	</tr>
+                                        @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -87,4 +92,13 @@
     <script src="{{asset('plugins/jquery-datatable/extensions/export/buttons.print.min.js')}}"></script>
 
 	<script src="{{asset('js/pages/tables/jquery-datatable.js')}}"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('#asu').DataTable({
+                "autoWidth": true,
+                "ordering": true,
+            });
+        });
+    </script>
 @stop
