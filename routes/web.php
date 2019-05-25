@@ -23,3 +23,4 @@ Route::post('upload', 'FileController@upload')->name('upload');
 Auth::routes();
 
 // Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/log', 'LogController@index')->name('log');

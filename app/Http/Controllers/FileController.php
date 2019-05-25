@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\File;
+use App\log;
+use App\user;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -87,9 +89,17 @@ class FileController extends Controller
             'size' => $size,
             'path' => $path,
             'duration' => $time,
-            'sha' => $sha
+            'sha' => $sha,
+            'key' => $key
         ]);
-        // dd($file);
+
+        $log = Log::create([
+            'id_user' => $user,
+            'id_file' => $id,
+            'duration' => $time,
+            'execution' => 1,
+        ]);
+
         return redirect()
             ->back()
             ->withSuccess(sprintf('File %s has been uploaded.', $title));      
@@ -100,7 +110,16 @@ class FileController extends Controller
         
         $encryptedContent = Storage::get($file->stored);
         //aes
+        $start = microtime(true)*1000;
         $decryptedContent = decrypt($encryptedContent);
+        $time = microtime(true)*1000 - $start;
+
+        $log = Log::create([
+            'id_user' => Auth::user()->id,
+            'id_file' => $id,
+            'duration' => $time,
+            'execution' => 2
+        ]);
 
         // return Storage::download($decryptedContent);
         return response()->make($decryptedContent, 200, array(

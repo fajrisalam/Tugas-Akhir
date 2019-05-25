@@ -43,21 +43,23 @@
                             <span>Upload File</span>
                         </a>
                     </li>
+
                     @if(Auth::user()->role_id == 1)
-                    <li>
-                        <a href="{{route('home')}}">
+                    <li @if($active == 4) class="active" @endif >
+                        <a href="{{route('log')}}">
                             <i class="material-icons">home</i>
-                            <span>Admin</span>
+                            <span>Log</span>
                         </a>
                     </li>
                     @elseif(Auth::user()->role_id == 2)
-                    <li>
+                    <li @if($active == 4) class="active" @endif >
                         <a href="{{route('home')}}">
                             <i class="material-icons">home</i>
                             <span>User</span>
                         </a>
                     </li>
                     @endif
+                    
                 </ul>
             </div>
             <!-- #Menu -->

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Log;
 use Illuminate\Http\Request;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
 
 class LogController extends Controller
 {
@@ -14,7 +16,14 @@ class LogController extends Controller
      */
     public function index()
     {
-        //
+        if(!Auth::check()) return redirect(route('login')); 
+
+        $data['log'] = Log::all();
+        $data['c'] = 1;
+        $data['active'] = 4;
+
+        dd($data['log'][4]->file[0]);
+        return view('log.index', $data);
     }
 
     /**
