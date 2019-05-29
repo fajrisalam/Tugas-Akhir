@@ -22,7 +22,7 @@ class LogController extends Controller
         $data['c'] = 1;
         $data['active'] = 4;
 
-        dd($data['log'][4]->file[0]);
+        // dd($data['log'][2]->file[0]);
         return view('log.index', $data);
     }
 

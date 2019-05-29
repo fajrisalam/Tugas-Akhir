@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\sharing;
+use App\File;
 use Illuminate\Http\Request;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
 
 class SharingController extends Controller
 {
@@ -12,9 +15,21 @@ class SharingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //
+    public function index(){
+        if(!Auth::check()) return redirect(route('login')); 
+
+        $data['log'] = sharing::all();
+        $data['c'] = 1;
+        $data['active'] = 5;
+
+        // dd($data['log'][2]->file[0]);
+        return view('share.index', $data);
+    }
+
+    public function form(File $id){
+        if(!Auth::check()) return redirect(route('login')); 
+
+        return view('share.form');
     }
 
     /**

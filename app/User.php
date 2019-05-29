@@ -20,7 +20,10 @@ class User extends Authenticatable
     ];
     
     public function log(){
-        return $this->belongsTo('App\Log', 'id_user', 'id');
+        return $this->belongsTo('App\Log');
+    }
+    public function sharing(){
+        return $this->belongsTo('App\sharing');
     }
 
     /**

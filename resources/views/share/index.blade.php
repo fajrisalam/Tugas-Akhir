@@ -1,6 +1,6 @@
 @extends('layout.main')
 
-@section('title', 'My Files')
+@section('title', 'Share - index')
 
 
 @section('content')
@@ -20,22 +20,18 @@
                                         <thead>
                                             <tr>
                                                 <th class="text-center">No.</th>
-                                                <th class="text-center">User</th>
+                                                <th class="text-center">Pemilik</th>
                                                 <th class="text-center">File</th>
-                                                <th class="text-center">Size (KB)</th>
-                                                <th class="text-center">Durasi (ms)</th>
-                                                <th class="text-center">Aktivitas</th>
+                                                <th class="text-center">Shared</th>
                                                 <th class="text-center">Aksi</th>
                                             </tr>
                                         </thead>
                                         <tfoot>
                                             <tr>
                                                 <th class="text-center">No.</th>
-                                                <th class="text-center">User</th>
+                                                <th class="text-center">Pemilik</th>
                                                 <th class="text-center">File</th>
-                                                <th class="text-center">Size (KB)</th>
-                                                <th class="text-center">Durasi (ms)</th>
-                                                <th class="text-center">Aktivitas</th>
+                                                <th class="text-center">Shared</th>
                                                 <th class="text-center">Aksi</th>
                                             </tr>
                                         </tfoot>
@@ -46,12 +42,6 @@
                                                 <td>{{$l->user[0]->name}} </td>
                                                 <td>{{$l->file[0]->filename}}</td>
                                                 <td style="text-align: right;">{{$l->file[0]->size/1000}}</td>
-                                                <td>{{$l->duration}}</td>
-                                                @if($l->execution == 1)
-                                                    <td> Upload </td>
-                                                @elseif($l->execution == 2)
-                                                    <td>Download</td>
-                                                @endif
                                         		<td class="text-center" ">
                                                     <a href="{{URL::to('/')}}" class="btn btn-success waves-effect">Download</a> 
                                                     <a href="#" class="btn btn-primary waves-effect">Bagikan</a> 

@@ -6,12 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Log extends Model
 {
-    protected $fillable = ['id_file','id_user', 'execution', 'duration'];
+    protected $fillable = ['file_id','user_id', 'execution', 'duration'];
 
     public function user(){
-        return $this->hasMany('App\User', 'id', 'id_user');
+        return $this->hasMany('App\User', 'id', 'user_id');
     }
     public function file(){
-        return $this->hasMany('App\File', 'id', 'id_file');
+        return $this->hasMany('App\File', 'id', 'file_id');
     }
 }
