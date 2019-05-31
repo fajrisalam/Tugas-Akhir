@@ -26,7 +26,7 @@ Route::get('/upload', 'FileController@formUpload')->name('upload');
 Route::post('upload', 'FileController@upload')->name('upload');
 //share
 Route::get('/share', 'SharingController@index')->name('share');
-Route::get('/share/form', 'SharingController@form')->name('share_form');
+Route::get('/share/form/{id}', 'SharingController@form')->name('share_form');
+Route::post('/share/form/', 'SharingController@update_share')->name('share_update');
 //log
 Route::get('/log', 'LogController@index')->name('log');
-)

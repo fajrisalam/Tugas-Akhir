@@ -1,3 +1,6 @@
+    <!-- Favicon-->
+    <link rel="icon" href="{{asset('favicon.ico')}}" type="image/x-icon">
+
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
@@ -40,4 +43,13 @@
 
     <!-- noUISlider Css -->
     <link href="{{asset('plugins/nouislider/nouislider.min.css')}}" rel="stylesheet" />
+
+    <!-- Bootstrap Material Datetime Picker Css -->
+    <link href="{{asset('plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css')}}" rel="stylesheet" />
+
+    <!-- Bootstrap DatePicker Css -->
+    <link href="{{asset('plugins/bootstrap-datepicker/css/bootstrap-datepicker.css')}}" rel="stylesheet" />
+
+    <!-- Wait Me Css -->
+    <link href="{{asset('plugins/waitme/waitMe.css')}}" rel="stylesheet" />
     @yield('moreCSS');

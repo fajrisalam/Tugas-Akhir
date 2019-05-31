@@ -4,54 +4,73 @@
 
 
 @section('content')
+<div class="header" style="margin-top: -40px;">
+    <ol class="breadcrumb breadcrumb-col-pink">
+        <li><a href="javascript:void(0);"><i class="material-icons">home</i> Home</a></li>
+        <li class="active"><i class="material-icons">library_books</i> Library</li>
+    </ol>
+</div>
 			<!-- Basic Examples -->
             <div class="row clearfix">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 col-lg-offset-2 col-md-offset-2 col-sm-offset-2 col-xs-offset-2">
                     <div class="card">
                         <div class="header">
-                            <h2>
-                                File Saya
-                            </h2>
+                            <h2>Bagikan File</h2>
                         </div>
+
+                        @if(session('success'))
+                        <div class="alert alert-danger">
+                            {{ session('success') }}
+                        </div>
+                        @endif
+
                         <div class="body">
-                            <div class="table-responsive">
-                                <div class="col-md-12">
-                                    <table class="table table-bordered table-striped table-hover js-basic-example dataTable" id="asu">
-                                        <thead>
-                                            <tr>
-                                                <th class="text-center">No.</th>
-                                                <th class="text-center">Pemilik</th>
-                                                <th class="text-center">File</th>
-                                                <th class="text-center">Shared</th>
-                                                <th class="text-center">Aksi</th>
-                                            </tr>
-                                        </thead>
-                                        <tfoot>
-                                            <tr>
-                                                <th class="text-center">No.</th>
-                                                <th class="text-center">Pemilik</th>
-                                                <th class="text-center">File</th>
-                                                <th class="text-center">Shared</th>
-                                                <th class="text-center">Aksi</th>
-                                            </tr>
-                                        </tfoot>
-                                        <tbody>
-                                        @foreach($log as $l)
-                                        	<tr>
-                                        		<td class="text-center">{{$c++}}</td>
-                                                <td>{{$l->user[0]->name}} </td>
-                                                <td>{{$l->file[0]->filename}}</td>
-                                                <td style="text-align: right;">{{$l->file[0]->size/1000}}</td>
-                                        		<td class="text-center" ">
-                                                    <a href="{{URL::to('/')}}" class="btn btn-success waves-effect">Download</a> 
-                                                    <a href="#" class="btn btn-primary waves-effect">Bagikan</a> 
-                                                </td>
-                                        	</tr>
-                                        @endforeach
-                                        </tbody>
-                                    </table>
+                        {!! Form::open(['action' => 'SharingController@update_share', 'id'=>'form_validation', 'method'=>'POST','class'=>'form-horizontal']) !!}
+                            <h2 class="card-inside-title">Basic Examples</h2>
+                            <div class="row clearfix">
+                                <div class="col-md-3 col-xs-3 col-sm-3 col-lg-3 form-label" style="text-align: left;margin-top:8px;">
+                                {{Form::label('j_privasi','Jenis Privasi')}}
+                                </div>
+                                <div class="col-md-6 col-xs-6 col-sm-6 col-lg-6">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                        {{Form::select('privasi', [0 => 'Privasi', '1' => 'Publik'], 0, ['class' => 'form-control show-tick', 'required'])}}
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
+                            <div class="row clearfix">
+                                <div class="col-md-3 col-xs-3 col-sm-3 col-lg-3 form-label" >
+                                    {!! Form::label('share', 'Bagikan') !!}
+                                    <!-- <input type="checkbox" name="halo"> -->
+                                </div>
+                                <div class="col-md-6 col-xs-6 col-sm-6 col-lg-6" >
+                                    <!-- {!! Form::checkbox('shared', '1', false, ['class' => 'chk-col-purple']) !!} -->
+                                    <input type="checkbox" name="check" id="cek" class="chk-col-pink filled-in action-select" value="1" onclick="myFunction()">
+                                    <label for="cek">&nbsp;</label>
+ 
+                                </div>
+                            </div>
+                            
+                            <div class="row clearfix" id="email" style="display: none;">
+                            <div class="col-md-3 col-xs-3 col-sm-3 col-lg-3 form-label" style="text-align: left;margin-top:8px;">
+                                {{Form::label('email','Email')}}
+                            </div>
+                            <div class="col-md-6 col-xs-6 col-sm-6 col-lg-6 m-t-5">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <input type="email" class="form-control" id="em" placeholder="Email" name="email">
+                                        <input type="hidden" name="file" value="{{$file->id}}">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row clearfix">
+                            <div class="col-md-offset-3 col-xs-offset-3 col-sm-offset-3 col-lg-offset-3">
+                                {!! Form::submit('Kirim',['class'=>'btn btn-success m-t-15 waves-effect']) !!}
+                            </div>
+                        </div>
+                    {!! Form::close() !!}
                         </div>
                     </div>
                 </div>
@@ -62,25 +81,19 @@
 
 
 @section('moreJS')
-<!-- Jquery DataTable Plugin Js -->
-    <script src="{{asset('plugins/jquery-datatable/jquery.dataTables.js')}}"></script>
-    <script src="{{asset('plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js')}}"></script>
-    <script src="{{asset('plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js')}}"></script>
-    <script src="{{asset('plugins/jquery-datatable/extensions/export/buttons.flash.min.js')}}"></script>
-    <script src="{{asset('plugins/jquery-datatable/extensions/export/jszip.min.js')}}"></script>
-    <script src="{{asset('plugins/jquery-datatable/extensions/export/pdfmake.min.js')}}"></script>
-    <script src="{{asset('plugins/jquery-datatable/extensions/export/vfs_fonts.js')}}"></script>
-    <script src="{{asset('plugins/jquery-datatable/extensions/export/buttons.html5.min.js')}}"></script>
-    <script src="{{asset('plugins/jquery-datatable/extensions/export/buttons.print.min.js')}}"></script>
+<script>
+function myFunction() {
+  var checkBox = document.getElementById("cek");
+  var text = document.getElementById("email");
+  var em = document.getElementById("em");
 
-	<script src="{{asset('js/pages/tables/jquery-datatable.js')}}"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.js"></script>
-    <script>
-        $(document).ready(function(){
-            $('#asu').DataTable({
-                "autoWidth": true,
-                "ordering": true,
-            });
-        });
-    </script>
+  if (checkBox.checked == true){
+    text.style.display = "block";
+    em.required = true;
+  } else {
+     text.style.display = "none";
+     em.required = false;
+  }
+}
+</script>
 @stop

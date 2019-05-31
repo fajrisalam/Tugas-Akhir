@@ -90,12 +90,13 @@ class FileController extends Controller
             'path' => $path,
             'duration' => $time,
             'sha' => $sha,
-            'key' => $key
+            'key' => $key,
+            'privasi' => 0
         ]);
 
         $log = Log::create([
-            'id_user' => $user,
-            'id_file' => $id,
+            'user_id' => $user,
+            'file_id' => $id,
             'duration' => $time,
             'execution' => 1,
         ]);
@@ -115,8 +116,8 @@ class FileController extends Controller
         $time = microtime(true)*1000 - $start;
 
         $log = Log::create([
-            'id_user' => Auth::user()->id,
-            'id_file' => $id,
+            'user_id' => Auth::user()->id,
+            'file_id' => $id,
             'duration' => $time,
             'execution' => 2
         ]);

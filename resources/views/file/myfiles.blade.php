@@ -12,6 +12,12 @@
                             <h2>
                                 File Saya
                             </h2>
+
+                        @if(session('success'))
+                        <div class="alert alert-success">
+                            {{ session('success') }}
+                        </div>
+                        @endif
                             <!-- <ul class="header-dropdown m-r--5">
                                 <li class="dropdown">
                                     <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
@@ -33,8 +39,8 @@
                                             <tr>
                                                 <th class="text-center">No.</th>
                                                 <th class="text-center">Filename</th>
-                                                <th class="text-center">Format</th>
-                                                <th class="text-center">Size</th>
+                                                <th class="text-center">Jenis File</th>
+                                                <th class="text-center">Size KB</th>
                                                 <th class="text-center">Durasi (ms)</th>
                                                 <th class="text-center">Tanggal</th>
                                                 <th class="text-center">Aksi</th>
@@ -44,8 +50,8 @@
                                             <tr>
                                                 <th class="text-center">No.</th>
                                                 <th class="text-center">Filename</th>
-                                                <th class="text-center">Format</th>
-                                                <th class="text-center">Size</th>
+                                                <th class="text-center">Jenis File</th>
+                                                <th class="text-center">Size KB</th>
                                                 <th class="text-center">Durasi (ms)</th>
                                                 <th class="text-center">Tanggal</th>
                                                 <th class="text-center">Aksi</th>
@@ -57,12 +63,12 @@
                                         		<td class="text-center">{{$c++}}</td>
                                         		<td>{{$file->filename}}</td>
                                         		<td>{{$file->format}}</td>
-                                        		<td style="text-align:right;">{{$file->size}} B</td>
+                                        		<td style="text-align:right;">{{$file->size/1000}}</td>
                                         		<td>{{$file->duration}}</td>
                                         		<td style="text-align:right;">{{$file->created_at}}</td>
                                         		<td class="text-center" ">
                                                     <a href="{{URL::to('/files/'.$file->id)}}" class="btn btn-success waves-effect">Download</a> 
-                                                    <a href="#" class="btn btn-primary waves-effect">Bagikan</a> 
+                                                    <a href="{{URL::to('/share/form/'.$file->id)}}" class="btn btn-primary waves-effect">Bagikan</a> 
                                                 </td>
                                         	</tr>
                                         @endforeach
