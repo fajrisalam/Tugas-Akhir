@@ -23,7 +23,7 @@ class SharingController extends Controller
         $data['c'] = 1;
         $data['active'] = 5;
 
-        // dd($data['log'][2]->file[0]);
+        // dd($data['log']);
         return view('share.index', $data);
     }
 

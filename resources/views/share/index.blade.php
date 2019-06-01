@@ -20,28 +20,28 @@
                                         <thead>
                                             <tr>
                                                 <th class="text-center">No.</th>
-                                                <th class="text-center">Pemilik</th>
-                                                <th class="text-center">File</th>
-                                                <th class="text-center">Shared</th>
-                                                <th class="text-center">Aksi</th>
+                                                <th>Pemilik</th>
+                                                <th>File</th>
+                                                <th>Shared</th>
+                                                <th>Aksi</th>
                                             </tr>
                                         </thead>
                                         <tfoot>
                                             <tr>
                                                 <th class="text-center">No.</th>
-                                                <th class="text-center">Pemilik</th>
-                                                <th class="text-center">File</th>
-                                                <th class="text-center">Shared</th>
-                                                <th class="text-center">Aksi</th>
+                                                <th>Pemilik</th>
+                                                <th>File</th>
+                                                <th>Shared</th>
+                                                <th>Aksi</th>
                                             </tr>
                                         </tfoot>
                                         <tbody>
                                         @foreach($log as $l)
                                         	<tr>
                                         		<td class="text-center">{{$c++}}</td>
-                                                <td>{{$l->user[0]->name}} </td>
+                                                <td>{{$l->owner[0]->email}} </td>
                                                 <td>{{$l->file[0]->filename}}</td>
-                                                <td style="text-align: right;">{{$l->file[0]->size/1000}}</td>
+                                                <td>{{$l->shared[0]->email}}</td>
                                         		<td class="text-center" ">
                                                     <a href="{{URL::to('/')}}" class="btn btn-success waves-effect">Download</a> 
                                                     <a href="#" class="btn btn-primary waves-effect">Bagikan</a> 

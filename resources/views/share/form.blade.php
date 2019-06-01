@@ -34,7 +34,7 @@
                                 <div class="col-md-6 col-xs-6 col-sm-6 col-lg-6">
                                     <div class="form-group">
                                         <div class="form-line">
-                                        {{Form::select('privasi', [0 => 'Privasi', '1' => 'Publik'], 0, ['class' => 'form-control show-tick', 'required'])}}
+                                        {{Form::select('privasi', [0 => 'Privasi', '1' => 'Publik'], $file->privasi, ['class' => 'form-control show-tick', 'required', 'onclick' => 'public()', 'id' => 'pubs'] ) }}
                                         </div>
                                     </div>
                                 </div>
@@ -91,9 +91,23 @@ function myFunction() {
     text.style.display = "block";
     em.required = true;
   } else {
-     text.style.display = "none";
-     em.required = false;
+    text.style.display = "none";
+    em.required = false;
   }
 }
+</script>
+<script>
+    function public(){
+        var pub = document.getElementById("pubs");
+        var text = document.getElementById("email");
+        var em = document.getElementById("em");
+        if(pubs.value){
+            text.style.display = "none";
+            em.required = false;
+        } else{
+            text.style.display = "block";
+            em.required = true;
+        }
+    }
 </script>
 @stop

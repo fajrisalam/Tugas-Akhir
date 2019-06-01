@@ -54,7 +54,7 @@
                     <li @if($active == 5) class="active" @endif >
                         <a href="{{route('share')}}">
                             <i class="material-icons">home</i>
-                            <span>Sharing Data</span>
+                            <span>File Sharing</span>
                         </a>
                     </li>
                     @elseif(Auth::user()->role_id == 2)

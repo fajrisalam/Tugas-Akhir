@@ -109,6 +109,21 @@ class FileController extends Controller
     public function Download($id){
         $file = File::find($id);
         
+        $checksum = 'sha256sum.exe ../storage/app'.$file->path.$file->stored;
+        $process = new Process($checksum);
+        $process->run();
+        // executes after the command finishes
+        if (!$process->isSuccessful()) {
+            throw new ProcessFailedException($process);
+        }
+        $sha = explode(" ",$process->getOutput())[0];
+
+        //Jika sha tidak sama (ada perubahan data)
+        if($file->sha != $sha)
+            return redirect()
+                ->back()
+                ->withSuccess(sprintf('File telah dimodifikasi.'));
+
         $encryptedContent = Storage::get($file->stored);
         //aes
         $start = microtime(true)*1000;
