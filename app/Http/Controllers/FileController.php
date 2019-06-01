@@ -91,7 +91,8 @@ class FileController extends Controller
             'duration' => $time,
             'sha' => $sha,
             'key' => $key,
-            'privasi' => 0
+            'privasi' => 0,
+            'modif' => 0
         ]);
 
         $log = Log::create([

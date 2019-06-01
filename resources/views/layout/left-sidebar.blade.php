@@ -57,13 +57,6 @@
                             <span>File Sharing</span>
                         </a>
                     </li>
-                    @elseif(Auth::user()->role_id == 2)
-                    <li @if($active == 4) class="active" @endif >
-                        <a href="{{route('home')}}">
-                            <i class="material-icons">home</i>
-                            <span>User</span>
-                        </a>
-                    </li>
                     @endif
 
                 </ul>

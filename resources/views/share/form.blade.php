@@ -34,12 +34,16 @@
                                 <div class="col-md-6 col-xs-6 col-sm-6 col-lg-6">
                                     <div class="form-group">
                                         <div class="form-line">
-                                        {{Form::select('privasi', [0 => 'Privasi', '1' => 'Publik'], $file->privasi, ['class' => 'form-control show-tick', 'required', 'onclick' => 'public()', 'id' => 'pubs'] ) }}
+                                        <!-- {{Form::select('privasi', [0 => 'Privasi', '1' => 'Publik'], $file->privasi, ['class' => 'form-control show-tick', 'required', 'onclick' => 'public()', 'id' => 'pubs'] ) }} -->
+                                        <select name="privasi" id="pubs" class="form-control show-tick" onclick="public()">
+                                            <option value="0" @if(!$file->privasi) selected @endif >Privasi</option>
+                                            <option value="1" @if($file->privasi) selected @endif >Public</option>
+                                        </select>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="row clearfix">
+                            <div class="row clearfix" id="check" @if($file->privasi) style="display: none;" @endif >
                                 <div class="col-md-3 col-xs-3 col-sm-3 col-lg-3 form-label" >
                                     {!! Form::label('share', 'Bagikan') !!}
                                     <!-- <input type="checkbox" name="halo"> -->
@@ -83,9 +87,9 @@
 @section('moreJS')
 <script>
 function myFunction() {
-  var checkBox = document.getElementById("cek");
   var text = document.getElementById("email");
   var em = document.getElementById("em");
+  var checkBox = document.getElementById("cek");
 
   if (checkBox.checked == true){
     text.style.display = "block";
@@ -96,18 +100,19 @@ function myFunction() {
   }
 }
 </script>
+
 <script>
-    function public(){
-        var pub = document.getElementById("pubs");
-        var text = document.getElementById("email");
-        var em = document.getElementById("em");
-        if(pubs.value){
+  var text = document.getElementById("email");
+  var em = document.getElementById("em");
+    $('#pubs').change(function(){
+        if($('#pubs').val() == 1){
+            $('#check').hide();
+            $('#cek').attr('checked', false);
             text.style.display = "none";
             em.required = false;
-        } else{
-            text.style.display = "block";
-            em.required = true;
+        }else{
+            $('#check').show();
         }
-    }
+    });
 </script>
 @stop

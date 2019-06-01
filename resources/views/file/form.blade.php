@@ -26,7 +26,6 @@
                         </div>
                         <div class="form-actions">
                             <button type="submit" class="btn btn-primary">Upload</button>
-                            <input type="checkbox" name="vehicle" value="1" class="action-select"> I have a car<br>
                         </div>
                     </form>
                 </div>

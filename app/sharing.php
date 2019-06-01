@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class sharing extends Model
 {
-    protected $fillable = ['id_owner', 'id_file', 'id_shared'];
+    protected $fillable = ['id_owner', 'id_file', 'id_shared', 'public'];
 
     public function owner(){
     	return $this->hasMany('App\User', 'id', 'id_owner');

@@ -45,10 +45,16 @@ class SharingController extends Controller
             $file = File::find($request->file);
             $file->privasi = 1;
             $file->save();
+
+            $share = sharing::where('id_file', $request->file);
+            $share->update(['public' => 1]);
         } else{
             $file = File::find($request->file);
             $file->privasi = 0;
             $file->save();
+
+            $share = sharing::where('id_file', $request->file);
+            $share->update(['public' => 0]);
         }
 
         if($request->email){
