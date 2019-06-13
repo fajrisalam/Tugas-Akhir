@@ -51,6 +51,8 @@
                                                     <td> Upload </td>
                                                 @elseif($l->execution == 2)
                                                     <td>Download</td>
+                                                @elseif($l->execution == 3)
+                                                    <td>Delete</td>
                                                 @endif
                                         		<td class="text-center" ">
                                                     <a href="{{URL::to('/')}}" class="btn btn-success waves-effect">Download</a> 

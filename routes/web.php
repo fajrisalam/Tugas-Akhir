@@ -24,6 +24,7 @@ Route::get('/files', 'FileController@index')->name('myfile');
 Route::get('files/{id}', 'FileController@Download')->name('download');
 Route::get('/upload', 'FileController@formUpload')->name('upload');
 Route::post('upload', 'FileController@upload')->name('upload');
+Route::get('/files/delete/{id}', 'FileController@delete')->name('delete');
 //share
 Route::get('/share', 'SharingController@index')->name('share');
 Route::get('/share/form/{id}', 'SharingController@form')->name('share_form');

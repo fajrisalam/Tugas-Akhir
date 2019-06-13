@@ -18,13 +18,8 @@ try:
 	       checksum = "sha256sum.exe " + file
 	       process = os.popen(checksum).read()
 	       cc = process.split()[0]
-	       print("file      = ", row[2])
-	       print("sha       = ", row[9])
-	       print("checksum  = ", cc[1:], "\n")
 	       if(cc[1:] != sha):
-	       		print('tidak sama')
 	       		update = "update files set modif = 1 where id = 18" 
-	       		print(update)
 	       		cursor.execute(update)
 	       		mySQLconnection.commit()
    cursor.close()  

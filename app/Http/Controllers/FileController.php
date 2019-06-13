@@ -30,7 +30,7 @@ class FileController extends Controller
 
         $user = Auth::user()->id;
 
-        $data['files'] = DB::table('files')->where('id_user', $user)->get();
+        $data['files'] = DB::table('files')->where('id_user', $user)->where('delete', 0)->get();
         $data['c'] = 1;
         $data['active'] = 2;
         
@@ -92,7 +92,8 @@ class FileController extends Controller
             'sha' => $sha,
             'key' => $key,
             'privasi' => 0,
-            'modif' => 0
+            'modif' => 0,
+            'delete' => 0
         ]);
 
         $log = Log::create([
@@ -109,7 +110,9 @@ class FileController extends Controller
 
     public function Download($id){
         $file = File::find($id);
-        
+        if($file->delete)
+
+
         $checksum = 'sha256sum.exe ../storage/app'.$file->path.$file->stored;
         $process = new Process($checksum);
         $process->run();
@@ -144,6 +147,50 @@ class FileController extends Controller
             'Content-Disposition' => 'attachment; filename="' . pathinfo($file->filename, PATHINFO_BASENAME) . '"'
         ));
     }
+
+
+    public function delete(File $id){
+        $file = $id;
+        $file->delete = 1;
+        $file->save();
+        return redirect()->back()->withSuccess(sprintf('Berhasil menghapus file %s.', $file->filename));
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     /**
      * Show the form for creating a new resource.

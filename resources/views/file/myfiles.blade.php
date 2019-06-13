@@ -66,9 +66,10 @@
                                         		<td style="text-align:right;">{{$file->size/1000}}</td>
                                         		<td>{{$file->duration}}</td>
                                         		<td style="text-align:right;">{{$file->created_at}}</td>
-                                        		<td class="text-center" ">
+                                        		<td class="text-center">
                                                     <a href="{{URL::to('/files/'.$file->id)}}" class="btn btn-success waves-effect">Download</a> 
                                                     <a href="{{URL::to('/share/form/'.$file->id)}}" class="btn btn-primary waves-effect">Bagikan</a> 
+                                                    <a href="{{URL::to('/files/delete/'.$file->id)}}" class="btn btn-danger waves-effect">Delete</a> 
                                                 </td>
                                         	</tr>
                                         @endforeach
