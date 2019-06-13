@@ -9,7 +9,7 @@ use App\sharing;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
-// use Auth;
+
 
 class HomeController extends Controller
 {
@@ -45,8 +45,6 @@ class HomeController extends Controller
             $data['share'] = sharing::where('id_shared', Auth::user()->id)->count();
             $data['file'] = File::where('id_user', Auth::user()->id)->count();
         }
-        
-
 
         return view('testing.testo', $data);
     }
