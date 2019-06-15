@@ -23,7 +23,7 @@
                                                 <th>Pemilik</th>
                                                 <th>File</th>
                                                 <th>Shared</th>
-                                                <th>Aksi</th>
+                                                <th>Status</th>
                                             </tr>
                                         </thead>
                                         <tfoot>
@@ -32,7 +32,7 @@
                                                 <th>Pemilik</th>
                                                 <th>File</th>
                                                 <th>Shared</th>
-                                                <th>Aksi</th>
+                                                <th>Status</th>
                                             </tr>
                                         </tfoot>
                                         <tbody>
@@ -42,9 +42,10 @@
                                                 <td>{{$l->owner[0]->email}} </td>
                                                 <td>{{$l->file[0]->filename}}</td>
                                                 <td>{{$l->shared[0]->email}}</td>
-                                        		<td class="text-center" ">
-                                                    <a href="{{URL::to('/')}}" class="btn btn-success waves-effect">Download</a> 
-                                                    <a href="#" class="btn btn-primary waves-effect">Bagikan</a> 
+                                        		<td>
+                                                    @if($l->file[0]->modif) Modified
+                                                    @elseif($l->file[0]->delete) Deleted
+                                                    @else Available @endif
                                                 </td>
                                         	</tr>
                                         @endforeach

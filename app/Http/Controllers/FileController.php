@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\File;
-use App\log;
-use App\user;
+use App\Log;
+use App\User;
+use App\sharing;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -16,6 +17,7 @@ use Symfony\Component\Process\Exception\ProcessFailedException;
 use Symfony\Component\Process\Process;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use finfo;
+use Illuminate\Encryption\Encrypter;
 
 
 class FileController extends Controller
@@ -31,7 +33,9 @@ class FileController extends Controller
         $user = Auth::user()->id;
 
         $data['files'] = DB::table('files')->where('id_user', $user)->where('delete', 0)->get();
-        $data['c'] = 1;
+        $data['share'] = sharing::where('id_shared', $user)->get();
+
+        $data['c'] = 1; $data['d'] = 1;
         $data['active'] = 2;
         
         return view('file.myfiles', $data);
@@ -60,8 +64,9 @@ class FileController extends Controller
 
         //encryptnya mamank
         $start = microtime(true)*1000;
+        $enc = new Encrypter('12345678901234567890123456789876', 'AES-256-CBC');
         //aes
-        $encryptedContent = encrypt($fileContent);
+        $encryptedContent = $enc->encrypt($fileContent);
         Storage::put($filename, $encryptedContent);
         $time = microtime(true)*1000 - $start;
 
@@ -111,6 +116,7 @@ class FileController extends Controller
     public function Download($id){
         $file = File::find($id);
         if($file->delete)
+            return redirect('myfile')->withSuccess('File telah dihapus');
 
 
         $checksum = 'sha256sum.exe ../storage/app'.$file->path.$file->stored;
@@ -123,15 +129,20 @@ class FileController extends Controller
         $sha = explode(" ",$process->getOutput())[0];
 
         //Jika sha tidak sama (ada perubahan data)
-        if($file->sha != $sha)
+        if($file->sha != $sha){
+            $file->modif = 1;
+            $file->save();
+
             return redirect()
                 ->back()
                 ->withSuccess(sprintf('File telah dimodifikasi.'));
+        }
 
         $encryptedContent = Storage::get($file->stored);
         //aes
         $start = microtime(true)*1000;
-        $decryptedContent = decrypt($encryptedContent);
+        $enc = new Encrypter('12345678901234567890123456789876', 'AES-256-CBC');
+        $decryptedContent = $enc->decrypt($encryptedContent);
         $time = microtime(true)*1000 - $start;
 
         $log = Log::create([
@@ -153,6 +164,13 @@ class FileController extends Controller
         $file = $id;
         $file->delete = 1;
         $file->save();
+
+        $log = Log::create([
+                'user_id' => Auth::user()->id,
+                'file_id' => $file->id,
+                'duration' => 0,
+                'execution' => 3
+            ]);
         return redirect()->back()->withSuccess(sprintf('Berhasil menghapus file %s.', $file->filename));
     }
 

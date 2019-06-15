@@ -19,6 +19,7 @@ Auth::routes();
 
 //home
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home/coba', 'HomeController@coba')->name('coba');
 //file
 Route::get('/files', 'FileController@index')->name('myfile');
 Route::get('files/{id}', 'FileController@Download')->name('download');

@@ -6,9 +6,11 @@ use App\User;
 Use App\File;
 use App\Log;
 use App\sharing;
+use Config;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Encryption\Encrypter;
 
 
 class HomeController extends Controller
@@ -47,5 +49,12 @@ class HomeController extends Controller
         }
 
         return view('testing.testo', $data);
+    }
+    public function coba(){
+        $enc = new Encrypter('12345678901234567890123456789876', 'AES-256-CBC');
+        $str = 'Halo Dunia';
+        $en = $enc->encrypt($str);
+        $dec = $enc->decrypt($en);
+        dd($dec);
     }
 }
