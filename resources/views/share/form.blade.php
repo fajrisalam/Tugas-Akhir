@@ -4,12 +4,6 @@
 
 
 @section('content')
-<div class="header" style="margin-top: -40px;">
-    <ol class="breadcrumb breadcrumb-col-pink">
-        <li><a href="javascript:void(0);"><i class="material-icons">home</i> Home</a></li>
-        <li class="active"><i class="material-icons">library_books</i> Library</li>
-    </ol>
-</div>
 			<!-- Basic Examples -->
             <div class="row clearfix">
                 <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 col-lg-offset-2 col-md-offset-2 col-sm-offset-2 col-xs-offset-2">

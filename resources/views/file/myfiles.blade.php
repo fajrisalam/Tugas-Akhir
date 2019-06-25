@@ -41,7 +41,6 @@
                                                 <th class="text-center">Filename</th>
                                                 <th class="text-center">Jenis File</th>
                                                 <th class="text-center">Size KB</th>
-                                                <th class="text-center">Durasi (ms)</th>
                                                 <th class="text-center">Tanggal</th>
                                                 <th class="text-center">Aksi</th>
                                             </tr>
@@ -52,7 +51,6 @@
                                                 <th class="text-center">Filename</th>
                                                 <th class="text-center">Jenis File</th>
                                                 <th class="text-center">Size KB</th>
-                                                <th class="text-center">Durasi (ms)</th>
                                                 <th class="text-center">Tanggal</th>
                                                 <th class="text-center">Aksi</th>
                                             </tr>
@@ -64,7 +62,6 @@
                                                 <td>{{$file->filename}}</td>
                                                 <td>{{$file->format}}</td>
                                                 <td style="text-align:right;">{{$file->size/1000}}</td>
-                                                <td>{{$file->duration}}</td>
                                                 <td style="text-align:right;">{{$file->created_at}}</td>
                                                 <td class="text-center">
                                                     <a href="{{URL::to('/files/'.$file->id)}}" class="btn btn-success waves-effect">Download</a> 
@@ -77,6 +74,17 @@
                                     </table>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header">
+                            <h2>
+                                File Dibagikan ke Saya
+                            </h2>
                         </div>
                         <div class="body">
                             <div class="table-responsive">

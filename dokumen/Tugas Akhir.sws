@@ -4,7 +4,10 @@
 
 <Workspace>
 	<Local Expanded="Yes" Name="Tugas Akhir">
-		<Model ID="{3506D126-290C-481D-ABE4-1781386D10B1}" Name="CDM" Selected="Yes" Type="{1E597170-9350-11D1-AB3C-0020AF71E433}" URL="CDM.cdm"/>
+		<Model ID="{3506D126-290C-481D-ABE4-1781386D10B1}" Loaded="No" Name="CDM" Type="{1E597170-9350-11D1-AB3C-0020AF71E433}" URL="CDM.cdm"/>
+		<Model ID="{8B37C4DE-E45D-446B-80E2-5B3172E78E56}" Loaded="No" Name="PDM" Type="{CDE44E21-9669-11D1-9914-006097355D9B}" URL="PDM.pdm"/>
+		<Model ID="{783BFE2D-4269-4A79-A8BF-3ED8415C7736}" Name="Proses Bisnis" Selected="Yes" Type="{18112060-1A4B-11D1-83D9-444553540000}" URL="Use Case.oom"/>
+		<Model Expanded="Yes" ID="{DD38778E-9388-4348-8E36-F1B5DBA3541A}" Loaded="No" Name="Activity Diagram" Type="{18112060-1A4B-11D1-83D9-444553540000}" URL="Activity Diagram.oom"/>
 	</Local>
 	<BrowserModule Name="Repository"/>
 </Workspace>

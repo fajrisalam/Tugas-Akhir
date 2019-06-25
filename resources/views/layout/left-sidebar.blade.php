@@ -33,13 +33,13 @@
                     </li>
                     <li @if($active == 2) class="active" @endif >
                         <a href="{{route('myfile')}}">
-                            <i class="material-icons">home</i>
+                            <i class="material-icons">folder</i>
                             <span>My Files</span>
                         </a>
                     </li>
                     <li @if($active == 3) class="active" @endif >
                         <a href="{{route('upload')}}">
-                            <i class="material-icons">home</i>
+                            <i class="material-icons">file_upload</i>
                             <span>Upload File</span>
                         </a>
                     </li>
@@ -47,13 +47,13 @@
                     @if(Auth::user()->role_id == 1)
                     <li @if($active == 4) class="active" @endif >
                         <a href="{{route('log')}}">
-                            <i class="material-icons">home</i>
+                            <i class="material-icons">book</i>
                             <span>Log</span>
                         </a>
                     </li>
                     <li @if($active == 5) class="active" @endif >
                         <a href="{{route('share')}}">
-                            <i class="material-icons">home</i>
+                            <i class="material-icons">reply</i>
                             <span>File Sharing</span>
                         </a>
                     </li>

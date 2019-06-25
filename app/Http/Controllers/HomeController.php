@@ -8,6 +8,7 @@ use App\Log;
 use App\sharing;
 use Config;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Encryption\Encrypter;
@@ -62,6 +63,7 @@ class HomeController extends Controller
         $b1 = microtime(true)*1000;
         $dec = decrypt($en);
         $data['b'] = microtime(true)*1000 - $b1;
-        dd($data);
+        $user = sha1(1);
+        dd($user);
     }
 }

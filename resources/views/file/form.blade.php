@@ -2,7 +2,6 @@
 
 @section('title', 'cobacobagan')
 
-@section('content-title', 'ini title dude')
 
 @section('content')
     <div class="row">

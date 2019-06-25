@@ -10,7 +10,7 @@
                     <div class="card">
                         <div class="header">
                             <h2>
-                                File Saya
+                                Log Aktivitas
                             </h2>
                         </div>
                         <div class="body">

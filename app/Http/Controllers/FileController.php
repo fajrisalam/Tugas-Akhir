@@ -50,7 +50,7 @@ class FileController extends Controller
         $this->validate($request, [
             'file' => 'required|file|max:2048', // max 2MB
         ]);
-        $key = env('APP_KEY');
+        
         $user = Auth::user()->id;
         
 
@@ -95,7 +95,6 @@ class FileController extends Controller
             'path' => $path,
             'duration' => $time,
             'sha' => $sha,
-            'key' => $key,
             'privasi' => 0,
             'modif' => 0,
             'delete' => 0
