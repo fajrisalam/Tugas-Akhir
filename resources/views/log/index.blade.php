@@ -25,7 +25,6 @@
                                                 <th class="text-center">Size (KB)</th>
                                                 <th class="text-center">Durasi (ms)</th>
                                                 <th class="text-center">Aktivitas</th>
-                                                <th class="text-center">Aksi</th>
                                             </tr>
                                         </thead>
                                         <tfoot>
@@ -36,14 +35,13 @@
                                                 <th class="text-center">Size (KB)</th>
                                                 <th class="text-center">Durasi (ms)</th>
                                                 <th class="text-center">Aktivitas</th>
-                                                <th class="text-center">Aksi</th>
                                             </tr>
                                         </tfoot>
                                         <tbody>
                                         @foreach($log as $l)
                                         	<tr>
                                         		<td class="text-center">{{$c++}}</td>
-                                                <td>{{$l->user[0]->name}} </td>
+                                                <td>@if(!$l->user_id) System @else {{$l->user[0]->name}} @endif</td>
                                                 <td>{{$l->file[0]->filename}}</td>
                                                 <td style="text-align: right;">{{$l->file[0]->size/1000}}</td>
                                                 <td>{{$l->duration}}</td>
@@ -54,10 +52,6 @@
                                                 @elseif($l->execution == 3)
                                                     <td>Delete</td>
                                                 @endif
-                                        		<td class="text-center" ">
-                                                    <a href="{{URL::to('/')}}" class="btn btn-success waves-effect">Download</a> 
-                                                    <a href="#" class="btn btn-primary waves-effect">Bagikan</a> 
-                                                </td>
                                         	</tr>
                                         @endforeach
                                         </tbody>
@@ -75,7 +69,7 @@
 
 @section('moreJS')
 <!-- Jquery DataTable Plugin Js -->
-    <script src="{{asset('plugins/jquery-datatable/jquery.dataTables.js')}}"></script>
+    <!-- <script src="{{asset('plugins/jquery-datatable/jquery.dataTables.js')}}"></script>
     <script src="{{asset('plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js')}}"></script>
     <script src="{{asset('plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js')}}"></script>
     <script src="{{asset('plugins/jquery-datatable/extensions/export/buttons.flash.min.js')}}"></script>
@@ -86,13 +80,13 @@
     <script src="{{asset('plugins/jquery-datatable/extensions/export/buttons.print.min.js')}}"></script>
 
 	<script src="{{asset('js/pages/tables/jquery-datatable.js')}}"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.js"></script>
-    <script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.js"></script> -->
+    <!-- <script>
         $(document).ready(function(){
             $('#asu').DataTable({
                 "autoWidth": true,
                 "ordering": true,
             });
         });
-    </script>
+    </script> -->
 @stop

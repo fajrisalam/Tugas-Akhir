@@ -38,6 +38,9 @@ class FileController extends Controller
         $data['c'] = 1; $data['d'] = 1;
         $data['active'] = 2;
         
+        // $calonKey = Auth::user()->id.Auth::user()->name.Auth::user()->email.Auth::user()->created_at.Auth::user()->updated_at;
+        // $ckey = sha1($calonKey);
+        // $key = substr($ckey, 0, 32);
         return view('file.myfiles', $data);
     }
     public function formUpload(){
@@ -50,42 +53,57 @@ class FileController extends Controller
         $this->validate($request, [
             'file' => 'required|file|max:2048', // max 2MB
         ]);
-        
+        //user
         $user = Auth::user()->id;
-        
 
+        //file
         $files = $request->file('file');
         $size = $request->file('file')->getSize();
-
-        $id = File::all()->last()->id +1;
+        $lastFile = File::all()->last()->id;
+        if(!$lastFile) $id = 1;
+        else $id = $lastFile + 1;
+        // $id = File::all()->last()->id +1;
         $filename = $id.'.dat';
-
         $fileContent = $files->get();
+        $title = $files->getClientOriginalName();
 
-        //encryptnya mamank
+        //generate key
+        $calonKey = Auth::user()->id.Auth::user()->name.Auth::user()->email.Auth::user()->created_at.Auth::user()->updated_at;
+        $ckey = sha1($calonKey);
+        $key = substr($ckey, 0, 32);
+
+        //encrypt AES
         $start = microtime(true)*1000;
-        $enc = new Encrypter('12345678901234567890123456789876', 'AES-256-CBC');
-        //aes
+        $enc = new Encrypter($key, 'AES-256-CBC');
         $encryptedContent = $enc->encrypt($fileContent);
+
+        //store encrypted
         Storage::put($filename, $encryptedContent);
         $time = microtime(true)*1000 - $start;
-
         // $path = $files->store('/');
         $fileOri = $files->getClientOriginalName();
         $ext = $files->getClientMimeType();
         $path = '/';
 
-        $title = $files->getClientOriginalName();
-        
-        $checksum = 'sha256sum.exe ../storage/app'.$path.$filename;
+        // generate checksum / sha256
+        $checksum = 'sha256sum ../storage/app'.$path.$filename;
         $process = new Process($checksum);
         $process->run();
-        // executes after the command finishes
+            // executes after the command finishes
         if (!$process->isSuccessful()) {
             throw new ProcessFailedException($process);
         }
         $sha = explode(" ",$process->getOutput())[0];
+
+        // transfer ke server backup
+        $scp = 'scp /var/www/html/Tugas-Akhir/storage/app/'.$filename.' root@128.199.64.128:/var/www/html/backup/';
+        $transfer = new Process($scp);
+        $transfer->run();
+        if (!$transfer->isSuccessful()) {
+            throw new ProcessFailedException($transfer);
+        }
         
+        // insert db
         $file = File::create([
             'id_user' => $user,
             'filename' => $title,
@@ -99,7 +117,6 @@ class FileController extends Controller
             'modif' => 0,
             'delete' => 0
         ]);
-
         $log = Log::create([
             'user_id' => $user,
             'file_id' => $id,
@@ -118,7 +135,7 @@ class FileController extends Controller
             return redirect('myfile')->withSuccess('File telah dihapus');
 
 
-        $checksum = 'sha256sum.exe ../storage/app'.$file->path.$file->stored;
+        $checksum = 'sha256sum ../storage/app'.$file->path.$file->stored;
         $process = new Process($checksum);
         $process->run();
         // executes after the command finishes
@@ -136,11 +153,17 @@ class FileController extends Controller
                 ->back()
                 ->withSuccess(sprintf('File telah dimodifikasi.'));
         }
-
+        // ambil encrypted file
         $encryptedContent = Storage::get($file->stored);
+        //generate key
+        $owner = User::find($file->id_user);
+        $calonKey = $owner->id.$owner->name.$owner->email.$owner->created_at.$owner->updated_at;
+        $ckey = sha1($calonKey);
+        $key = substr($ckey, 0, 32);
+
         //aes
         $start = microtime(true)*1000;
-        $enc = new Encrypter('12345678901234567890123456789876', 'AES-256-CBC');
+        $enc = new Encrypter($key, 'AES-256-CBC');
         $decryptedContent = $enc->decrypt($encryptedContent);
         $time = microtime(true)*1000 - $start;
 
