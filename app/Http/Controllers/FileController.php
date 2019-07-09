@@ -59,9 +59,9 @@ class FileController extends Controller
         //file
         $files = $request->file('file');
         $size = $request->file('file')->getSize();
-        $lastFile = File::all()->last()->id;
+        $lastFile = File::all()->last();
         if(!$lastFile) $id = 1;
-        else $id = $lastFile + 1;
+        else $id = $lastFile->id + 1;
         // $id = File::all()->last()->id +1;
         $filename = $id.'.dat';
         $fileContent = $files->get();
