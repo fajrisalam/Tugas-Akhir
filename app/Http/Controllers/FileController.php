@@ -96,7 +96,7 @@ class FileController extends Controller
         $sha = explode(" ",$process->getOutput())[0];
 
         // transfer ke server backup
-        $scp = 'scp /var/www/html/Tugas-Akhir/storage/app/'.$filename.' root@128.199.64.128:/var/www/html/backup';
+        $scp = 'scp /var/www/html/Tugas-Akhir/storage/app/'.$filename.' root@128.199.64.128:/var/www/html/backup/'.$filename;
         $transfer = new Process($scp);
         $transfer->run();
         if (!$transfer->isSuccessful()) {
