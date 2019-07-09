@@ -2,7 +2,11 @@
 
 @section('title', 'My Files')
 
+@section('moreCSS')
+<!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css"/> -->
+ 
 
+@stop
 @section('content')
 			<!-- Basic Examples -->
             <div class="row clearfix">
@@ -79,9 +83,9 @@
     <script src="{{asset('plugins/jquery-datatable/extensions/export/buttons.html5.min.js')}}"></script>
     <script src="{{asset('plugins/jquery-datatable/extensions/export/buttons.print.min.js')}}"></script>
 
-	<script src="{{asset('js/pages/tables/jquery-datatable.js')}}"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.js"></script> -->
-    <!-- <script>
+	<script src="{{asset('js/pages/tables/jquery-datatable.js')}}"></script>-->
+    <!-- <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.js"></script>
+    <script>
         $(document).ready(function(){
             $('#asu').DataTable({
                 "autoWidth": true,

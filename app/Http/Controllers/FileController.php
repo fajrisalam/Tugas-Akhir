@@ -173,7 +173,7 @@ class FileController extends Controller
             'duration' => $time,
             'execution' => 2
         ]);
-
+        ob_end_clean();
         // return Storage::download($decryptedContent);
         return response()->make($decryptedContent, 200, array(
             'Content-Type' => (new finfo(FILEINFO_MIME))->buffer($decryptedContent),

@@ -52,4 +52,5 @@
 
     <!-- Wait Me Css -->
     <link href="{{asset('plugins/waitme/waitMe.css')}}" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css"/>
     @yield('moreCSS');

@@ -21,25 +21,41 @@
     <script src="{{asset('plugins/morrisjs/morris.js')}}"></script>
 
     <!-- ChartJs -->
-    <script src="{{asset('plugins/chartjs/Chart.bundle.js')}}"></script>
+    <!-- <script src="{{asset('plugins/chartjs/Chart.bundle.js')}}"></script> -->
 
     <!-- Flot Charts Plugin Js -->
-    <script src="{{asset('plugins/flot-charts/jquery.flot.js')}}"></script>
+    <!-- <script src="{{asset('plugins/flot-charts/jquery.flot.js')}}"></script>
     <script src="{{asset('plugins/flot-charts/jquery.flot.resize.js')}}"></script>
     <script src="{{asset('plugins/flot-charts/jquery.flot.pie.js')}}"></script>
     <script src="{{asset('plugins/flot-charts/jquery.flot.categories.js')}}"></script>
-    <script src="{{asset('plugins/flot-charts/jquery.flot.time.js')}}"></script>
+    <script src="{{asset('plugins/flot-charts/jquery.flot.time.js')}}"></script> -->
 
     <!-- Sparkline Chart Plugin Js -->
     <script src="{{asset('plugins/jquery-sparkline/jquery.sparkline.js')}}"></script>
 
     <!-- Custom Js -->
     <script src="{{asset('js/admin.js')}}"></script>
-    <script src="{{asset('js/pages/index.js')}}"></script>
-    <script src="{{asset('js/pages/forms/advanced-form-elements.js')}}"></script>
+    <!-- <script src="{{asset('js/pages/index.js')}}"></script> -->
+    <!-- <script src="{{asset('js/pages/forms/advanced-form-elements.js')}}"></script> -->
 
     <!-- Demo Js -->
     <script src="{{asset('js/demo.js')}}"></script>
+
+
+
+
+
+
+
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('#asu').DataTable({
+                "autoWidth": true,
+                "ordering": true,
+            });
+        });
+    </script>
 
 
 

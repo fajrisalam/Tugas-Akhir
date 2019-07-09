@@ -61,27 +61,3 @@
 
 @stop
 
-
-@section('moreJS')
-<!-- Jquery DataTable Plugin Js -->
-    <script src="{{asset('plugins/jquery-datatable/jquery.dataTables.js')}}"></script>
-    <script src="{{asset('plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js')}}"></script>
-    <script src="{{asset('plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js')}}"></script>
-    <script src="{{asset('plugins/jquery-datatable/extensions/export/buttons.flash.min.js')}}"></script>
-    <script src="{{asset('plugins/jquery-datatable/extensions/export/jszip.min.js')}}"></script>
-    <script src="{{asset('plugins/jquery-datatable/extensions/export/pdfmake.min.js')}}"></script>
-    <script src="{{asset('plugins/jquery-datatable/extensions/export/vfs_fonts.js')}}"></script>
-    <script src="{{asset('plugins/jquery-datatable/extensions/export/buttons.html5.min.js')}}"></script>
-    <script src="{{asset('plugins/jquery-datatable/extensions/export/buttons.print.min.js')}}"></script>
-
-	<script src="{{asset('js/pages/tables/jquery-datatable.js')}}"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.js"></script>
-    <script>
-        $(document).ready(function(){
-            $('#asu').DataTable({
-                "autoWidth": true,
-                "ordering": true,
-            });
-        });
-    </script>
-@stop

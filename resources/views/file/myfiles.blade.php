@@ -138,28 +138,7 @@
 
 
 @section('moreJS')
-<!-- Jquery DataTable Plugin Js -->
-    <script src="{{asset('plugins/jquery-datatable/jquery.dataTables.js')}}"></script>
-    <script src="{{asset('plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js')}}"></script>
-    <script src="{{asset('plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js')}}"></script>
-    <script src="{{asset('plugins/jquery-datatable/extensions/export/buttons.flash.min.js')}}"></script>
-    <script src="{{asset('plugins/jquery-datatable/extensions/export/jszip.min.js')}}"></script>
-    <script src="{{asset('plugins/jquery-datatable/extensions/export/pdfmake.min.js')}}"></script>
-    <script src="{{asset('plugins/jquery-datatable/extensions/export/vfs_fonts.js')}}"></script>
-    <script src="{{asset('plugins/jquery-datatable/extensions/export/buttons.html5.min.js')}}"></script>
-    <script src="{{asset('plugins/jquery-datatable/extensions/export/buttons.print.min.js')}}"></script>
-
-{!! Html::script('plugins/jquery-datatable/jquery.dataTables.js') !!}
-{!! Html::script('plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js') !!}
-{!! Html::script('plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js') !!}
-{!! Html::script('plugins/jquery-datatable/extensions/export/buttons.flash.min.js') !!}
-{!! Html::script('plugins/jquery-datatable/extensions/export/jszip.min.js') !!}
-{!! Html::script('plugins/jquery-datatable/extensions/export/pdfmake.min.js') !!}
-{!! Html::script('plugins/jquery-datatable/extensions/export/vfs_fonts.js') !!}
-{!! Html::script('plugins/jquery-datatable/extensions/export/buttons.html5.min.js') !!}
-{!! Html::script('plugins/jquery-datatable/extensions/export/buttons.print.min.js') !!}
-
-	<script src="{{asset('js/pages/tables/jquery-datatable.js')}}"></script>
+	<!-- <script src="{{asset('js/pages/tables/jquery-datatable.js')}}"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.js"></script>
     <script>
         $(document).ready(function(){
@@ -168,5 +147,5 @@
                 "ordering": true,
             });
         });
-    </script>
+    </script> -->
 @stop
