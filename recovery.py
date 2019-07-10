@@ -2,27 +2,48 @@ import os
 import mysql.connector
 from mysql.connector import Error
 from mysql.connector import errorcode
+import datetime
 try:
-   mySQLconnection = mysql.connector.connect(host='178.128.80.206',
+   mySQLconnection = mysql.connector.connect(host='localhost',
                              database='skripsi',
-                             user='buaya',
-                             password='sembarang12')
+                             user='root',
+                             password='')
    sql_select_Query = "select * from files"
    cursor = mySQLconnection .cursor()
    cursor.execute(sql_select_Query)
    records = cursor.fetchall()
    for row in records:
-       file = 'storage\\app\\' + row[2]
-       sha = row[9]
-       print(file)
-       print(sha)
-	       # checksum = "sha256sum.exe " + file
-	       # process = os.popen(checksum).read()
-	       # cc = process.split()[0]
-	       # if(cc[1:] != sha):
-	       # 		update = "update files set modif = 1 where id = 18" 
-	       # 		cursor.execute(update)
-	       # 		mySQLconnection.commit()
+     file = str(row[2])
+     # if file dihapus
+     if(row[10] == 1):
+      ssh = 'sshpass -p indomiegoreng123! '
+      scp = 'scp /var/www/html/backup/' + file + ' root@157.230.42.44:/var/www/html/Tugas-Akhir/storage/app/'
+      command = ssh + scp
+      transfer = os.system(command)
+      ts = datetime.datetime.now().timestamp()
+      time = datetime.datetime.fromtimestamp(ts).isoformat()
+      new_time = time.replace('T', ' ')
+      time = new_time[:19]
+      update = "update files set `modif` = 0 where id = " + str(row[0])
+      cursor.execute(update)
+      insert = "insert into logs (`user_id`, `file_id`, `execution`, `duration`, `created_at`) values (0, "+str(row[0])+", 5, '-', '" + str(time)+"')"
+      cursor.execute(insert)
+      mySQLconnection.commit()
+     # if file mod
+     elif(row[12] == 1):
+      ssh = 'sshpass -p indomiegoreng123! '
+      scp = 'scp /var/www/html/backup/' + file + ' root@157.230.42.44:/var/www/html/Tugas-Akhir/storage/app/'
+      command = ssh + scp
+      transfer = os.system(command)
+      ts = datetime.datetime.now().timestamp()
+      time = datetime.datetime.fromtimestamp(ts).isoformat()
+      new_time = time.replace('T', ' ')
+      time = new_time[:19]
+      update = "update files set `delete` = 0 where id = " + str(row[0])
+      cursor.execute(update)
+      insert = "insert into logs (`user_id`, `file_id`, `execution`, `duration`, `created_at`) values (0, "+str(row[0])+", 6, '-', '" + str(time)+"')"
+      cursor.execute(insert)
+      mySQLconnection.commit()
    cursor.close()  
 except Error as e :
     print ("Error while connecting to MySQL", e)
