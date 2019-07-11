@@ -30,7 +30,7 @@ try:
        checksum = "sha256sum " + file
        process = os.popen(checksum).read()
        cc = process.split()[0]
-       if(cc[1:] != sha):
+       if(cc != sha):
         update = "update files set modif = 1 where id = " + str(row[0])
         cursor.execute(update)
         ts = datetime.datetime.now().timestamp()
