@@ -17,7 +17,7 @@
                         </div>
                         <div class="content">
                             <div class="text">Users</div>
-                            <div class="number">{{$share}}</div>
+                            <div class="number">{{$user}}</div>
                         </div>
                     </div>
                 </div>

@@ -3,6 +3,20 @@ import mysql.connector
 from mysql.connector import Error
 from mysql.connector import errorcode
 import datetime
+import paramiko
+from paramiko import SSHClient
+from scp import SCPClient
+
+def createSSHCLient(server, port, user, password):
+    client = paramiko.SSHClient()
+    client.load_system_host_keys()
+    client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+    client.connect(server, port, user, password)
+    return client
+
+ssh = createSSHClient('157.230.42.44', '22', 'root', 'indomiegoreng123!')
+scp = SCPClient(ssh.get_transport())
+
 try:
    mySQLconnection = mysql.connector.connect(host='localhost',
                              database='skripsi',
@@ -16,10 +30,9 @@ try:
      file = str(row[2])
      # if file dihapus
      if(row[10] == 1):
-      ssh = 'sshpass -p indomiegoreng123! '
-      scp = 'scp /var/www/html/backup/' + file + ' root@157.230.42.44:/var/www/html/Tugas-Akhir/storage/app/'
-      command = ssh + scp
-      transfer = os.system(command)
+      src = '/var/www/html/backup/' + str(row[2])
+      dst = '/var/www/html/Tugas-Akhir/storage/app/'
+      scp.put(src, dst)
       ts = datetime.datetime.now().timestamp()
       time = datetime.datetime.fromtimestamp(ts).isoformat()
       new_time = time.replace('T', ' ')
@@ -31,10 +44,9 @@ try:
       mySQLconnection.commit()
      # if file mod
      elif(row[12] == 1):
-      ssh = 'sshpass -p indomiegoreng123! '
-      scp = 'scp /var/www/html/backup/' + file + ' root@157.230.42.44:/var/www/html/Tugas-Akhir/storage/app/'
-      command = ssh + scp
-      transfer = os.system(command)
+      src = '/var/www/html/backup/' + str(row[2])
+      dst = '/var/www/html/Tugas-Akhir/storage/app/'
+      scp.put(src, dst)
       ts = datetime.datetime.now().timestamp()
       time = datetime.datetime.fromtimestamp(ts).isoformat()
       new_time = time.replace('T', ' ')

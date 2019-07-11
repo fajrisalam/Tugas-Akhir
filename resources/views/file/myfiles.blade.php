@@ -34,7 +34,7 @@
                         <div class="body">
                             <div class="table-responsive">
                                 <div class="col-md-12">
-                                    <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                                    <table class="table table-bordered table-striped table-hover js-basic-example dataTable" id="asu">
                                         <thead>
                                             <tr>
                                                 <th class="text-center">No.</th>
@@ -136,16 +136,3 @@
 
 @stop
 
-
-@section('moreJS')
-	<!-- <script src="{{asset('js/pages/tables/jquery-datatable.js')}}"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.js"></script>
-    <script>
-        $(document).ready(function(){
-            $('#asu').DataTable({
-                "autoWidth": true,
-                "ordering": true,
-            });
-        });
-    </script> -->
-@stop
