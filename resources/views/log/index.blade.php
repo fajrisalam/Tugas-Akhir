@@ -55,6 +55,14 @@
                                                     <td>Download</td>
                                                 @elseif($l->execution == 3)
                                                     <td>Delete</td>
+                                                @elseif($l->execution == 4)
+                                                    <td>Found: lost</td>
+                                                @elseif($l->execution == 5)
+                                                    <td>Found: modified</td>
+                                                @elseif($l->execution == 6)
+                                                    <td>recovery: lost</td>
+                                                @elseif($l->execution == 7)
+                                                    <td>recovery: modified</td>
                                                 @endif
                                         	</tr>
                                         @endforeach

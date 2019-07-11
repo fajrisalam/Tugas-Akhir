@@ -36,7 +36,7 @@ try:
             time = new_time[:19]
             update = "update files set `modif` = 0 where id = " + str(row[0])
             cursor.execute(update)
-            insert = "insert into logs (`user_id`, `file_id`, `execution`, `duration`, `created_at`) values (0, "+str(row[0])+", 5, '-', '" + str(time)+"')"
+            insert = "insert into logs (`user_id`, `file_id`, `execution`, `duration`, `created_at`) values (0, "+str(row[0])+", 6, '-', '" + str(time)+"')"
             cursor.execute(insert)
             mySQLconnection.commit()
         # if file mod
@@ -50,7 +50,7 @@ try:
             time = new_time[:19]
             update = "update files set `delete` = 0 where id = " + str(row[0])
             cursor.execute(update)
-            insert = "insert into logs (`user_id`, `file_id`, `execution`, `duration`, `created_at`) values (0, "+str(row[0])+", 6, '-', '" + str(time)+"')"
+            insert = "insert into logs (`user_id`, `file_id`, `execution`, `duration`, `created_at`) values (0, "+str(row[0])+", 7, '-', '" + str(time)+"')"
             cursor.execute(insert)
             mySQLconnection.commit()
     cursor.close()  

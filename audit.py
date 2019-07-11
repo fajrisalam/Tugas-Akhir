@@ -27,7 +27,7 @@ try:
       mySQLconnection.commit()
      # if file ada
      else:
-       checksum = "sha256sum.exe " + file
+       checksum = "sha256sum " + file
        process = os.popen(checksum).read()
        cc = process.split()[0]
        if(cc[1:] != sha):
@@ -37,7 +37,7 @@ try:
         time = datetime.datetime.fromtimestamp(ts).isoformat()
         new_time = time.replace('T', ' ')
         time = new_time[:19]
-        insert = "insert into logs (`user_id`, `file_id`, `execution`, `duration`, `created_at`) values (0, "+str(row[0])+", 3, '-', '" + str(time)+"')"
+        insert = "insert into logs (`user_id`, `file_id`, `execution`, `duration`, `created_at`) values (0, "+str(row[0])+", 5, '-', '" + str(time)+"')"
         cursor.execute(insert)
         # file belum dihapus ingat ini
         mySQLconnection.commit()
