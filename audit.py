@@ -4,10 +4,7 @@ from mysql.connector import Error
 from mysql.connector import errorcode
 import datetime;
 try:
-   mySQLconnection = mysql.connector.connect(host='localhost',
-                             database='skripsi',
-                             user='root',
-                             password='')
+   mySQLconnection = mysql.connector.connect(host='178.128.80.206',database='skripsi',user='buaya',password='sembarang12')
    sql_select_Query = "select * from files"
    cursor = mySQLconnection .cursor()
    cursor.execute(sql_select_Query)
