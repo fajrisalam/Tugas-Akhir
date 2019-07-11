@@ -10,7 +10,7 @@ try:
    cursor.execute(sql_select_Query)
    records = cursor.fetchall()
    for row in records:
-     file = 'storage\\app\\' + row[2]
+     file = 'storage/app/' + row[2]
      sha = row[9]
 
      is_exist = os.path.isfile(file)
