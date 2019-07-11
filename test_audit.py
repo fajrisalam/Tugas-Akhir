@@ -43,10 +43,10 @@ try:
 #         # file belum dihapus ingat ini
 #         mySQLconnection.commit()
 #    cursor.close()  
-# except Error as e :
-#     print ("Error while connecting to MySQL", e)
-# finally:
-#     #closing database connection.
-#     if(mySQLconnection .is_connected()):
-#         mySQLconnection.close()
-#         print("MySQL connection is closed")
+except Error as e :
+    print ("Error while connecting to MySQL", e)
+finally:
+    #closing database connection.
+    if(mySQLconnection .is_connected()):
+        mySQLconnection.close()
+        print("MySQL connection is closed")
