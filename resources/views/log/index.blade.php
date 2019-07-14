@@ -60,9 +60,9 @@
                                                 @elseif($l->execution == 5)
                                                     <td>Found: modified</td>
                                                 @elseif($l->execution == 6)
-                                                    <td>recovery: lost</td>
-                                                @elseif($l->execution == 7)
                                                     <td>recovery: modified</td>
+                                                @elseif($l->execution == 7)
+                                                    <td>recovery: lost</td>
                                                 @endif
                                         	</tr>
                                         @endforeach
