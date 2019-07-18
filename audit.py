@@ -2,7 +2,7 @@ import os
 import mysql.connector
 from mysql.connector import Error
 from mysql.connector import errorcode
-import datetime;
+import datetime
 try:
    mySQLconnection = mysql.connector.connect(host='178.128.80.206',database='skripsi',user='buaya',password='sembarang12')
    sql_select_Query = "select * from files"
