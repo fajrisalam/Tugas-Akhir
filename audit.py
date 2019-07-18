@@ -2,7 +2,7 @@ import os
 import mysql.connector
 from mysql.connector import Error
 from mysql.connector import errorcode
-import datetime
+import datetime;
 try:
    mySQLconnection = mysql.connector.connect(host='178.128.80.206',database='skripsi',user='buaya',password='sembarang12')
    sql_select_Query = "select * from files"
@@ -16,7 +16,7 @@ try:
      is_exist = os.path.isfile(file)
      # if file tidak ada
      if(is_exist == False):
-      update = "update files set `delete` = 1 where id = " + str(row[0])
+      update = "update files set lost = 1 where id = " + str(row[0])
       cursor.execute(update)
       ts = datetime.datetime.now().timestamp()
       time = datetime.datetime.fromtimestamp(ts).isoformat()
@@ -41,7 +41,7 @@ try:
         cursor.execute(insert)
         # file belum dihapus ingat ini
         mySQLconnection.commit()
-   cursor.close()  
+   cursor.close()
 except Error as e :
     print ("Error while connecting to MySQL", e)
 finally:
