@@ -20,16 +20,21 @@ try:
     records = cursor.fetchall()
     try:
         s.login (hostname, username, password)
-        for row in records:
-          file = '/var/www/html/Tugas-Akhir/storage/app/' + row[2]
-          sha = row[9]
-          checksum = "sha256sum " + file
-          s.sendline(checksum)
-          print(s.before)
-        # s.sendline ('uptime')   # run a command
-        # s.prompt()             # match the prompt
-        # print(s.before)
-        s.logout()
+        file = '/var/www/html/Tugas-Akhir/storage/app/1.dat'
+        sha = row[9]
+        checksum = "sha256sum "+ file
+        s.sendline(checksum)
+        print(s.berfore)
+        # for row in records:
+        #   file = '/var/www/html/Tugas-Akhir/storage/app/' + row[2]
+        #   sha = row[9]
+        #   checksum = "sha256sum " + file
+        #   s.sendline(checksum)
+        #   print(s.before)
+        # # s.sendline ('uptime')   # run a command
+        # # s.prompt()             # match the prompt
+        # # print(s.before)
+        # s.logout()
     except pxssh.ExceptionPxssh as e:
         print("pxssh failed on login.")
         print(str(e))
