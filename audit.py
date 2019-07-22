@@ -39,13 +39,12 @@ try:
         time = new_time[:19]
         insert = "insert into logs (`user_id`, `file_id`, `execution`, `duration`, `created_at`) values (0, "+str(row[0])+", 5, '-', '" + str(time)+"')"
         cursor.execute(insert)
-        # file belum dihapus ingat ini
         mySQLconnection.commit()
    cursor.close()
 except Error as e :
     print ("Error while connecting to MySQL", e)
 finally:
-    #closing database connection.
+    #tutup koneksi database.
     if(mySQLconnection .is_connected()):
         mySQLconnection.close()
         print("MySQL connection is closed")
