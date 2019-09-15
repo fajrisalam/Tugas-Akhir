@@ -8,7 +8,10 @@ Requirement
 Kodingan paling baru terdapat pada branch new
 
 Dokumen buku, poster dll ada di folder dokumen
+
 File dump database ada di folder dokumen
+
+
 
 
 Script-script Python:
