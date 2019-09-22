@@ -23,3 +23,10 @@ Script-script Python:
 Hal-hal yang perlu diperhatikan:
 1. Setting scp agar tidak perlu login (dijalankan dari web). tutorial --> https://alvinalexander.com/linux-unix/how-use-scp-without-password-backups-copy
 2. Pelajari penggunaan library yang digunakan pada script python
+3. Pelajari crontab di linux
+
+
+
+Yang bisa dikembangkan dari TA ini:
+1. Verifikasi Database (sebelumnya cuma verifikasi file)
+2. Ditambahkan keamanaan untuk sistem (saat ini cuma ada keamaanan standard dari laravel)
